@@ -1,0 +1,58 @@
+{
+    "version": "2.5.2",
+    "exportedEnvVars": {
+        "lwt_installed": {
+            "global": true,
+            "globalCollisionBehavior": "clobber",
+            "val": "true"
+        },
+        "lwt_version": {
+            "global": true,
+            "globalCollisionBehavior": "clobber",
+            "val": "2.5.2"
+        },
+        "FINDLIB": {
+            "global": true,
+            "resolveAsRelativePath": true,
+            "globalCollisionBehavior": "joinPath",
+            "val": "./_build/ocamlfind/lib"
+        },
+        "version": {
+            "global": true,
+            "globalCollisionBehavior": "clobber",
+            "val": "2.5.2"
+        },
+        "lwt_enable": {
+            "global": true,
+            "globalCollisionBehavior": "clobber",
+            "val": "enable"
+        },
+        "PATH": {
+            "global": true,
+            "resolveAsRelativePath": true,
+            "globalCollisionBehavior": "joinPath",
+            "val": "./_build/ocamlfind/bin"
+        }
+    },
+    "name": "lwt",
+    "dependencies": {
+        "react": "https://github.com/npm-opam/react",
+        "ocamlbuild": "https://github.com/npm-opam/ocamlbuild",
+        "base-unix": "https://github.com/npm-opam/base-unix",
+        "ocamlfind": "https://github.com/npm-opam/ocamlfind",
+        "camlp4": "https://github.com/npm-opam/camlp4",
+        "ocaml": "https://github.com/npm-opam/ocaml.git#npm-4.02.3",
+        "dependency-env": "https://github.com/npm-ml/dependency-env.git",
+        "substs": "https://github.com/yunxing/substs.git",
+        "conf-ncurses": "https://github.com/npm-opam/conf-ncurses",
+        "ppx_tools": "https://github.com/npm-opam/ppx_tools",
+        "base-threads": "https://github.com/npm-opam/base-threads",
+        "base-bytes": "https://github.com/npm-opam/base-bytes",
+        "nopam": "https://github.com/yunxing/nopam.git",
+        "base-no-ppx": "https://github.com/npm-opam/base-no-ppx",
+        "opam-installer-bin": "https://github.com/yunxing/opam-installer-bin.git"
+    },
+    "scripts": {
+        "postinstall": "eval $(dependencyEnv) && nopam && ./configure --prefix $opam_prefix --${conf_libev_enable:-disable}-libev --${camlp4_enable:-disable}-camlp4 --${react_enable:-disable}-react --${ssl_enable:-disable}-ssl --${base_unix_enable:-disable}-unix --${base_threads_enable:-disable}-preemptive --${lablgtk_enable:-disable}-glib --${ppx_tools_enable:-disable}-ppx && make build && make install && (opam-installer --prefix=$opam_prefix || true)"
+    }
+}
